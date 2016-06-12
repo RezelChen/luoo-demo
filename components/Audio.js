@@ -37,11 +37,9 @@ class Audio extends Component {
 
     const interval = setInterval(() => {
       this.setState({ currentTime: myAudio.currentTime })
-    }, 500)
+    }, 1000)
 
-    this.setState({ interval,
-                    duration: 0,
-                    currentTime: 0 })
+    this.setState({ interval })
   }
 
   changeCurrentTime(newCurrentTime) {
@@ -54,18 +52,21 @@ class Audio extends Component {
     this._renderEachTime()
   }
 
-  componentWillUnmount() {
-    this.state.interval && clearInterval(this.state.interval)
-  }
-
   componentWillReceiveProps(nextProps) {
     const myAudio = this.refs.myAudio
 
+    this._renderEachTime()
+
     if (nextProps.src === this.props.src) {
       (nextProps.isPlaying)? myAudio.play() : myAudio.pause()
+    } else {
+      this.setState({ duration: 0,
+                        currentTime: 0 })
     }
+  }
 
-    this._renderEachTime()
+  componentWillUnmount() {
+    this.state.interval && clearInterval(this.state.interval)
   }
 
   render() {
