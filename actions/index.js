@@ -55,9 +55,11 @@ function realSelectVol(volId) {
 }
 
 export function selectVol(volId) {
-	return dispatch => {
+	return (dispatch, getState) => {
 		dispatch(realSelectVol(volId))
-		dispatch(selectSong(0))
+		const state = getState()
+		if (state.selectedAudio.current !== 0)
+			dispatch(selectSong(0))
 	}
 	
 }
