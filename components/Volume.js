@@ -10,7 +10,7 @@ class Volume extends Component {
         <pre>
           title: {data.title}
         </pre>
-        <ul>
+        <ul style={{ width: "300px"}}>
           {data.items.map((item, i) =>  {
             if (songId===i) {
               return (<li style={{ backgroundColor: "#eee" }} key={i}

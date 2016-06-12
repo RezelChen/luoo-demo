@@ -36,7 +36,12 @@ class Song extends Component {
         <span onClick={this.prev}>prev</span>
         {" "}
         <span onClick={this.next}>next</span>
-        <div>{song.title}</div>
+        <div style={{ position: "absolute", left: "400px", top: "50px" }}>          
+          <img src={song.poster} style={{ width: "200px", height: "200px" }}/>
+          <p style={{ fontSize: "30px"}}>{song.title}</p>
+          <p>Artist: {song.artist}</p>
+          <p>Album: {song.album}</p>
+        </div>
         <Audio src={song.mp3}
                onEnd={this.next}
                isPlaying={isPlaying} />
